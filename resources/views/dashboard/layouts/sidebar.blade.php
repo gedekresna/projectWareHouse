@@ -8,7 +8,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{Request::is(['dataBarang','dataBarang/create']) ? 'active' : ''}}" href="/dataBarang">
+        <a class="nav-link {{Request::is('dataBarang*') ? 'active' : ''}}" href="/dataBarang">
           <i class="bi bi-file-text" class="align-text-bottom"></i>
          Data
         </a>

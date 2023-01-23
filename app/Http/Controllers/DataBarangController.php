@@ -39,13 +39,24 @@ class DataBarangController extends Controller
      */
     public function store(Request $request)
     {
-       $data = DataBarang::create([
+        echo "haha";
+        $validatedData = $request->validate([
+            'merk' =>'required',
+            'seri' => 'required|unique:data_barang',
+            'berat_per_box' => 'required|numeric',
+            'jumlah' => 'required|numeric',
+            'rak' => 'required'
+        ]);
+
+       DataBarang::create([
             'merk' => $request->merk,
             'seri' => $request->seri,
             'berat_per_box' => $request->berat_per_box,
             'jumlah' => $request->$jumlah,
             'rak' => $request->$rak
         ]);
+
+        return redirect('/dataBarang')->with('success','Data barang berhasil ditabhakan');
     }
 
     /**
