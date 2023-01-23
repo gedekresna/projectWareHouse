@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DataController;
+use App\Http\Controllers\DataBarangController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -23,7 +23,8 @@ use App\Http\Controllers\DashboardController;
 // Dashboard Route
 Route::get('/', [DashboardController::class, "index"]);
 
-// Data Route
-Route::get('/showData', [DataController::class, "index"]);
-Route::get('/createData', [DataController::class, "create"]);
+// Data barang Route
+Route::resource('/dataBarang', DataBarangController::class);
+// Route::get('/showData', [DataController::class, "index"]);
+// Route::get('/createData', [DataController::class, "create"]);
  

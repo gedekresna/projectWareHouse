@@ -5,6 +5,12 @@
     <h1 class="h2">Page Data</h1>  
   </div>
   
+  @if (session()->has('success'))
+    <div class="alert alert-success" role="alert">
+      {{session('success')}}
+    </div>
+  @endif
+
   <div class="card-container" style="display: flex; flex-wrap:wrap;">
     <div class="card" style="width: 18rem;">
       <div class="card-body">
@@ -44,7 +50,7 @@
             <h4>Data Table</h4>
         </div>
         <div class="col-3">
-            <a class="btn btn-primary" href="/createData" role="button">Tambah Data</a>
+            <a class="btn btn-primary" href="/dataBarang/create" role="button">Tambah Data</a>
         </div>
       </div>
   </div>
@@ -64,42 +70,21 @@
       </thead>
 
       <tbody>
-        <tr>
-          <td>1,015</td>
-          <td>random</td>
-          <td>tabular</td>
-          <td>information</td>
-          <td>information</td>
-          <td>information</td>
-          <td>
-            <a href="" class="badge bg-warning"><i class="bi bi-pencil-square"></i></a>
-            <a href="" class="badge bg-danger"><i class="bi bi-trash"></i></span></a>
-          </td>
-        </tr>
-        <tr>
-          <td>1,015</td>
-          <td>random</td>
-          <td>tabular</td>
-          <td>information</td>
-          <td>information</td>
-          <td>information</td>
-          <td>
-            <a href="" class="badge bg-warning"><i class="bi bi-pencil-square"></i></a>
-            <a href="" class="badge bg-danger"><i class="bi bi-trash"></i></span></a>
-          </td>
-        </tr>
-        <tr>
-          <td>1,015</td>
-          <td>random</td>
-          <td>tabular</td>
-          <td>information</td>
-          <td>information</td>
-          <td>information</td>
-          <td>
-            <a href="" class="badge bg-warning"><i class="bi bi-pencil-square"></i></a>
-            <a href="" class="badge bg-danger"><i class="bi bi-trash"></i></span></a>
-          </td>
-        </tr>
+        @foreach ($data_barang as $item )
+              <tr>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$item->merk}}</td>
+                <td>{{$item->seri}}</td>
+                <td>{{$item->berat_per_box}}</td>
+                <td>{{$item->jumlah}}</td>
+                <td>{{$item->rak}}</td>
+                <td>
+                    {{-- <a href="/dashboard/posts/{{$item->slug }}" class="badge bg-info"><i class="bi bi-eye"></i></span></a> --}}
+                    <a href="" class="badge bg-warning"><i class="bi bi-pencil-square"></i></a>
+                    <a href="" class="badge bg-danger"><i class="bi bi-trash"></i></span></a>
+                </td>
+            </tr>
+        @endforeach
       </tbody>
 
     </table>

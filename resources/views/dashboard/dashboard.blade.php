@@ -27,6 +27,7 @@
               <th scope="col">Time</th>
               <th scope="col">Berat Seluruh Box</th>
               <th scope="col">Jumlah Box</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
 
@@ -35,10 +36,12 @@
               <tr>
                 <td>{{$loop->iteration}}</td>
                 <td>{{$item->time}}</td>
-                {{-- <td>{{$item->s1 + $item->s2 + $item->s3 + $item->s4 }}</td> --}}
-                @foreach ($y_aksen as $y_val )
+                <td>{{$item->s1}}</td>
+                <td>{{$item->s2}}</td>
+                {{-- <td>{{$y_aksen}}</td> --}}
+                {{-- @foreach ($y_aksen as $y_val )
                   <td>{{$y_val}}</td>
-                @endforeach
+                @endforeach --}}
                 <td>
                     {{-- <a href="/dashboard/posts/{{$item->slug }}" class="badge bg-info"><i class="bi bi-eye"></i></span></a> --}}
                     <a href="" class="badge bg-warning"><i class="bi bi-pencil-square"></i></a>

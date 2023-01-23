@@ -5,35 +5,37 @@
     <h1 class="h2">Create New Data</h1>  
   </div>
 
-  <form>
+  <form method="post" action="/dataBarang">
+    @csrf
     <div class="form-group">
-      <label for="exampleFormControlInput1">Merk</label>
-     <input class="form-control" type="text" placeholder="Masukkan Merk">
+      <label for="merk">Merk</label>
+     <input class="form-control " type="text" id="merk" name="merk" placeholder="Masukkan Merk">
     </div>
-
+    <br>
     <div class="form-group">
-      <label for="exampleFormControlInput1">Seri</label>
-      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Seri">
+      <label for="seri">Seri</label>
+      <input type="email" class="form-control" id="seri" name="merk" placeholder="Masukkan Seri">
     </div>
-
+    <br>
     <div class="form-group">
-      <label for="exampleFormControlInput1">Berat 1 box</label>
-      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Berat 1 box"> 
+      <label for="berat_per_box">Berat 1 box</label>
+      <input type="email" class="form-control" id="berart_per_box" name="berat_per_box" placeholder="Masukkan Berat 1 box"> 
     </div>
-
+    <br>
     <div class="form-group">
-      <label for="exampleFormControlInput1">Jumlah box</label>
-      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Jumlah box"> 
+      <label for="jumlah">Jumlah box</label>
+      <input type="email" class="form-control" id="jumlah" name="jumlah" placeholder="Masukkan Jumlah box"> 
     </div>
-
-    <label for="exampleFormControlInput1">Rak</label>
-    <select class="form-control">
-      <option>A1</option>
-      <option>A2</option>
-      <option>A3</option>
+    <br>
+    <label for="rak">Rak</label>
+    <select class="form-control" id="rak" name="rak">
+      <option value="A1">A1</option>
+      <option value="A2">A2</option>
+      <option value="A3">A3</option>
     </select>
   </form>
-
-  <a href="#" class="btn btn-primary">Simpan</a>
+  <br>
+  {{-- <a href="#" class="btn btn-primary">Simpan</a> --}}
+  <button type="submit" class="btn btn-primary">Simpan</button>
 
 @endsection
