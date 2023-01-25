@@ -25,6 +25,4 @@ Route::get('/', [DashboardController::class, "index"]);
 
 // Data barang Route
 Route::resource('/dataBarang', DataBarangController::class);
-// Route::get('/showData', [DataController::class, "index"]);
-// Route::get('/createData', [DataController::class, "create"]);
- 
+

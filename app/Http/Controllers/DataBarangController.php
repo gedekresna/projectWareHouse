@@ -14,10 +14,8 @@ class DataBarangController extends Controller
      */
     public function index()
     {
-        $data_barang = DataBarang::all();
-
         return view('data.main',[
-            'data_barang' => $data_barang,
+            'data_barang' => DataBarang::all(),
         ]);
     }
 
@@ -39,7 +37,6 @@ class DataBarangController extends Controller
      */
     public function store(Request $request)
     {
-        echo "haha";
         $validatedData = $request->validate([
             'merk' =>'required',
             'seri' => 'required|unique:data_barang',
@@ -48,15 +45,9 @@ class DataBarangController extends Controller
             'rak' => 'required'
         ]);
 
-       DataBarang::create([
-            'merk' => $request->merk,
-            'seri' => $request->seri,
-            'berat_per_box' => $request->berat_per_box,
-            'jumlah' => $request->$jumlah,
-            'rak' => $request->$rak
-        ]);
+       DataBarang::create($validatedData);
 
-        return redirect('/dataBarang')->with('success','Data barang berhasil ditabhakan');
+        return redirect('/dataBarang')->with('success','Data barang berhasil ditambhakan');
     }
 
     /**
@@ -76,9 +67,11 @@ class DataBarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(DataBarang $dataBarang)
     {
-        //
+        return view('data.update_data',[
+            'data' => $dataBarang,
+        ]);
     }
 
     /**
@@ -90,7 +83,18 @@ class DataBarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'merk' =>'required',
+            'seri' => 'required|unique:data_barang,seri,'.$id,
+            'berat_per_box' => 'required|numeric',
+            'jumlah' => 'required|numeric',
+            'rak' => 'required'
+        ]);
+
+       DataBarang::where('id',$id)
+       ->update($validatedData);
+
+       return redirect('/dataBarang')->with('success','Data barang berhasil diupdate');
     }
 
     /**
@@ -101,6 +105,8 @@ class DataBarangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DataBarang::destroy($id);
+
+        return redirect('/dataBarang')->with('success','Data barang berhasil dihapus');
     }
 }
