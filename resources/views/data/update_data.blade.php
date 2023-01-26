@@ -54,15 +54,10 @@
 
     <div class="form-group">
       <label for="rak">Rak</label>
-    <select class="form-control @error('rak') is-invalid @enderror" id="rak" name="rak">
+    <select class="form-control @error('rak') is-invalid @enderror" id="rak" name="rak" value="{{old('rak')}}">
       <option value="A1" @if ($data->rak == "A1") selected @endif>A1</option>
       <option value="A2" @if ($data->rak == "A2") selected @endif>A2</option>
-      {{-- <option value="A3" @if ($data->rak == "A3") selected @endif>A3</option> --}}
-      <option value="A3" @if ($data->rak == "A3")
-          selected
-      @elseif(old('rak'))
-          selected
-      @endif>A3</option>
+      <option value="A3" @if ($data->rak == "A3") selected @endif>A3</option>
     </select>
     @error('rak')
        <div class="is-invalid">
@@ -73,7 +68,6 @@
     <br>
 
     <button type="submit" class="btn btn-primary">Simpan</button>
-    {{-- <a href="/dataBarang" type="submit" class="btn btn-primary">Simpan</a> --}}
   </form>
  
 

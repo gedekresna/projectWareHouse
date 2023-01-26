@@ -67,7 +67,6 @@
     <br>
 
     <button type="submit" class="btn btn-primary">Simpan</button>
-    {{-- <a href="/dataBarang" type="submit" class="btn btn-primary">Simpan</a> --}}
   </form>
  
 

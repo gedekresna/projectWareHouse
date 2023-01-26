@@ -6,13 +6,13 @@
   </div>
  
 
-    <div class="row">
-        <div class="col-6">
-          <canvas class="" id="myChart" width="100" height="50"></canvas>
+    <div class="row d-flex justify-content-center">
+        <div class="col-9" style="height: ">
+          <canvas class="" id="myChart"></canvas>
         </div>
-        <div class="col-6">
+        {{-- <div class="col-6">
           <canvas class="" id="myChart2" width="100" height="50"></canvas>
-        </div>
+        </div> --}}
     </div>
  
 
@@ -47,4 +47,34 @@
             @endforeach
         </table>
       </div>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+
+      <script>
+        var datas = {!! json_encode($data) !!};
+        let labels = datas.map((data)=>{return data.time})
+        let dataChart = datas.map((data)=>{return data.z_aksen})
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+          var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Jumlah Box',
+                data: dataChart,
+                backgroundColor: 'rgba(0, 0, 180, 0.2)',
+                borderColor: 'blue',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+      </script>
+
 @endsection
