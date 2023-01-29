@@ -16,6 +16,7 @@ class DashboardController extends Controller
                 (1.0019*(s1+s2+s3+s4)+0.0468) as y_aksen,
                 (0.02004*(1.0019*(s1+s2+s3+s4)+0.0468)+0.0009) as z_aksen 
             ')
+            ->orderBy('time')
             ->get();
 
         // $m = 1.0019;

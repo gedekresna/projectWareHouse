@@ -6,13 +6,13 @@
   </div>
  
 
-    <div class="row d-flex justify-content-center">
-        <div class="col-9" style="height: ">
+    <div class="row">
+        <div class="col-6">
           <canvas class="" id="myChart"></canvas>
         </div>
-        {{-- <div class="col-6">
-          <canvas class="" id="myChart2" width="100" height="50"></canvas>
-        </div> --}}
+        <div class="col-6">
+          <canvas class="" id="myChart2" ></canvas>
+        </div>
     </div>
  
 
@@ -53,7 +53,8 @@
       <script>
         var datas = {!! json_encode($data) !!};
         let labels = datas.map((data)=>{return data.time})
-        let dataChart = datas.map((data)=>{return data.z_aksen})
+        let dataChartZ = datas.map((data)=>{return data.z_aksen})
+        let dataChartY = datas.map((data)=>{return data.z_aksen})
 
         var ctx = document.getElementById('myChart').getContext('2d');
           var myChart = new Chart(ctx, {
@@ -62,9 +63,31 @@
               labels: labels,
               datasets: [{
                 label: 'Jumlah Box',
-                data: dataChart,
+                data: dataChartZ,
                 backgroundColor: 'rgba(0, 0, 180, 0.2)',
                 borderColor: 'blue',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+
+          var ctx = document.getElementById('myChart2').getContext('2d');
+          var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Berat Box',
+                data: dataChartY,
+                backgroundColor: 'rgba(180, 0,0, 0.2)',
+                borderColor: 'red',
                 borderWidth: 1
               }]
             },
