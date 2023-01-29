@@ -8,15 +8,15 @@ use App\Models\LoadCell;
 class DashboardController extends Controller
 {
     public function index(){
-        $data = LoadCell::all();
+        // $data = LoadCell::paginate(10);
 
         $data = LoadCell::query()
             ->select('id','time')
             ->selectRaw('
                 (1.0019*(s1+s2+s3+s4)+0.0468) as y_aksen,
                 (0.02004*(1.0019*(s1+s2+s3+s4)+0.0468)+0.0009) as z_aksen 
-            ')->get();
-
+            ')
+            ->get();
 
         // $m = 1.0019;
         // $c = 0.0468;

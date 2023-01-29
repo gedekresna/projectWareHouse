@@ -15,7 +15,7 @@ class DataBarangController extends Controller
     public function index()
     {
         return view('data.main',[
-            'data_barang' => DataBarang::all(),
+            'data_barang' => DataBarang::paginate(10),
         ]);
     }
 

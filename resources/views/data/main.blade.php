@@ -92,5 +92,8 @@
       </tbody>
 
     </table>
+    <div class="div d-flex flex-row-reverse" >
+      {!! $data_barang->links() !!}
+    </div>
   </div>
 @endsection
