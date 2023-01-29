@@ -25,7 +25,7 @@
     <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">A2</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Berat : (Y')</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Berat : {{}}(Y')</h6>
         <h6 class="card-subtitle mb-2 text-muted">Jumlah : (Z')</p>
        <button type="button" class="btn btn-secondary">Secondary</button>
         <button type="button" class="btn btn-success">Success</button>
