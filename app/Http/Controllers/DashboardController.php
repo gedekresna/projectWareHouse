@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\LoadCell;
+use App\Models\DataBarang;
 
 class DashboardController extends Controller
 {
@@ -18,6 +19,11 @@ class DashboardController extends Controller
             ')
             ->orderBy('time')
             ->get();
+
+        $databarang = DataBarang::query()
+        ->select('merk','seri','berat_per_box','jumlah')
+        ->selectRaw('berat_per_box * jumlah as y')
+        ->get();
 
         // $m = 1.0019;
         // $c = 0.0468;
@@ -41,6 +47,7 @@ class DashboardController extends Controller
 
         return view('dashboard.dashboard',[
             'data' => $data,
+            'dataBarang' => $databarang
             // 'y_aksen' => $y_aksen,
             // 'z_aksen' => $z_aksen
         ]);

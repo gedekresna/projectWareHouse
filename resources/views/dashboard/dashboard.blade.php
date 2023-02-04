@@ -4,6 +4,39 @@
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Welcome back, Aldi</h1>  
   </div>
+
+  <div class="card-container" style="display: flex; flex-wrap:wrap;">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">A1</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Berat : (Y')</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Jumlah : (Z')</p>
+       <button type="button" class="btn btn-secondary">Secondary</button>
+    <button type="button" class="btn btn-success">Success</button>
+
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">A2</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Berat :(Y')</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Jumlah : (Z')</p>
+       <button type="button" class="btn btn-secondary">Secondary</button>
+        <button type="button" class="btn btn-success">Success</button>
+
+      </div>
+    </div>
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">A3</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Berat : (Y')</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Jumlah : (Z')</p>
+       <button type="button" class="btn btn-secondary">Secondary</button>
+        <button type="button" class="btn btn-success">Success</button>
+
+      </div>
+    </div>
+  </div>
  
 
     <div class="row">
@@ -17,7 +50,7 @@
  
 
 
-  <h2 class="mt-2">Data Table</h2>
+  {{-- <h2 class="mt-2">Data Table</h2> --}}
       <div class="table-responsive">
         <table class="table table-striped table-sm">
 

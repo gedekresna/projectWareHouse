@@ -23,6 +23,7 @@ class LoadCellFactory extends Factory
             's2' => $this->faker->randomFloat(2,0,100),
             's3' => $this->faker->randomFloat(2,0,100),
             's4' => $this->faker->randomFloat(2,0,100),
+            'data_barang_id' => $this->faker->numberBetween(1, 3)
         ];
     }
 }

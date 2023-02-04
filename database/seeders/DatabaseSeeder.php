@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     
 
         LoadCell::factory(10)->create();
-        DataBarang::factory(10)->create();
+        // DataBarang::factory(10)->create();
 
 
         // \App\Models\User::factory()->create([

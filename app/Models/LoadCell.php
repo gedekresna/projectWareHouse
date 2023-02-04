@@ -13,6 +13,7 @@ class LoadCell extends Model
 
 
     protected $fillable = [
+        'data_barang_id',
         'date',
         'time',
         's1',
