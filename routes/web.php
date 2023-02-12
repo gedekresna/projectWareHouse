@@ -22,6 +22,7 @@ use App\Http\Controllers\DashboardController;
 
 // Dashboard Route
 Route::get('/', [DashboardController::class, "index"]);
+Route::get('/get-databarang-id/{id}', [DashboardController::class, "getDatabarang"]);
 
 // Data barang Route
 Route::resource('/dataBarang', DataBarangController::class);

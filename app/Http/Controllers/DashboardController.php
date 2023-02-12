@@ -9,10 +9,18 @@ use App\Models\DataBarang;
 class DashboardController extends Controller
 {
     public function index(){
-        // $data = LoadCell::paginate(10);
-
-        $data = LoadCell::query()
-            ->select('id','time')
+         
+            $data = LoadCell::query()
+                ->select('id','time')
+                ->selectRaw('
+                    (1.0019*(s1+s2+s3+s4)+0.0468) as y_aksen,
+                    (0.02004*(1.0019*(s1+s2+s3+s4)+0.0468)+0.0009) as z_aksen 
+                ')
+                ->orderBy('time')
+                ->paginate(10);
+        
+            $dataChart = LoadCell::query()
+            ->select('id','time','data_barang_id')
             ->selectRaw('
                 (1.0019*(s1+s2+s3+s4)+0.0468) as y_aksen,
                 (0.02004*(1.0019*(s1+s2+s3+s4)+0.0468)+0.0009) as z_aksen 
@@ -20,11 +28,9 @@ class DashboardController extends Controller
             ->orderBy('time')
             ->get();
 
-        $databarang = DataBarang::query()
-        ->select('merk','seri','berat_per_box','jumlah')
-        ->selectRaw('berat_per_box * jumlah as y')
-        ->get();
-
+           $dataBarang = DataBarang::latest()->first(); 
+           $dataLoadCell = LoadCell::all();
+    
         // $m = 1.0019;
         // $c = 0.0468;
         // $b = 0.02004;
@@ -44,13 +50,38 @@ class DashboardController extends Controller
         //     array_push($z_aksen,$b * $y + $a);  
                 
         // }
+        //echo "masuk index";
 
         return view('dashboard.dashboard',[
             'data' => $data,
-            'dataBarang' => $databarang
+            'dataChart' => $dataChart,
+            'dataBarang' => $dataBarang,
+            'dataLoadCell' =>  $dataLoadCell
             // 'y_aksen' => $y_aksen,
             // 'z_aksen' => $z_aksen
         ]);
+    }
+
+    public function getDataBarang($id){
+        //$lc_id = LoadCell::where('data_barang_id',$id)->first();
+
+        $lc_id= LoadCell::query()
+                ->where('data_barang_id',$id)
+                ->select('id','time')
+                ->selectRaw('
+                    (1.0019*(s1+s2+s3+s4)+0.0468) as y_aksen,
+                    (0.02004*(1.0019*(s1+s2+s3+s4)+0.0468)+0.0009) as z_aksen 
+                ')
+                ->first();
+        
+
+        return response()->json([
+            'lc_id' => $lc_id
+        ]);
+        // return view('dashboard.dashboard',[
+        //     'lc_id' => $lc_id
+        // ]);
+
     }
 
 }

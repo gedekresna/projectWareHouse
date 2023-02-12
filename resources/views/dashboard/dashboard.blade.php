@@ -5,17 +5,29 @@
     <h1 class="h2">Welcome back, Aldi</h1>  
   </div>
 
-  <div class="card-container" style="display: flex; flex-wrap:wrap;">
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">A1</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Berat : (Y')</h6>
-        <h6 class="card-subtitle mb-2 text-muted">Jumlah : (Z')</p>
-       <button type="button" class="btn btn-secondary">Secondary</button>
-    <button type="button" class="btn btn-success">Success</button>
+  <div class="card-container"  style="display: flex; flex-wrap:wrap;">
 
+    <div class="card" style="width: 18rem;" onload="loadCardA1(event,'{{$dataBarang->id}}')">
+      <div class="card-body" onclick="display(event,'{{ $dataChart }}')" id="cardA1" value="A1">
+        <div class="row">
+          <div class="col-3">
+            <h5 class="card-title">A1</h5>
+          </div>
+          <div class="col-9 d-flex flex-row-reverse">
+            @if($dataBarang->rak == "A1")
+              <h6 class="card-title">(Y){{$dataBarang->berat_per_box}}Kg|(Z){{$dataBarang->jumlah}}</h6>           
+          </div>
+        </div>
+        <h6 class="card-subtitle mb-2 text-muted" id="berat_y_aksen"></h6>
+        {{-- {{$lc_id->y_aksen}} --}}
+        
+        <h6 class="card-subtitle mb-2 text-muted" id="jumlah_z _aksen"></p>
+        <button type="button" class="btn btn-secondary">Secondary</button>
+         <button type="button" class="btn btn-success">Success</button>
+        @endif
       </div>
     </div>
+
     <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">A2</h5>
@@ -26,6 +38,7 @@
 
       </div>
     </div>
+
     <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">A3</h5>
@@ -51,7 +64,7 @@
 
 
   {{-- <h2 class="mt-2">Data Table</h2> --}}
-      <div class="table-responsive">
+      <div class="table-responsive" id="data-table" style="display:none">
         <table class="table table-striped table-sm">
 
           <thead>
@@ -79,59 +92,26 @@
             </tbody>
             @endforeach
         </table>
-        {{-- {!! $data->links() !!} --}}
+        <div class="div d-flex flex-row-reverse" >
+          {!! $data->links() !!}
+        </div>
       </div>
       <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
 
-      <script>
-        var datas = {!! json_encode($data) !!};
-        let labels = datas.map((data)=>{return data.time})
-        let dataChartZ = datas.map((data)=>{return data.z_aksen})
-        let dataChartY = datas.map((data)=>{return data.z_aksen})
-
-        var ctx = document.getElementById('myChart').getContext('2d');
-          var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: labels,
-              datasets: [{
-                label: 'Jumlah Box',
-                data: dataChartZ,
-                backgroundColor: 'rgba(0, 0, 180, 0.2)',
-                borderColor: 'blue',
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
-
-          var ctx = document.getElementById('myChart2').getContext('2d');
-          var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: labels,
-              datasets: [{
-                label: 'Berat Box',
-                data: dataChartY,
-                backgroundColor: 'rgba(180, 0,0, 0.2)',
-                borderColor: 'red',
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
-      </script>
-
 @endsection
+
+<script>
+
+window.onload = function() {
+  let id = {{ $dataBarang->id }};
+  fetch(`/get-databarang-id/${id}`)
+    .then(response => response.json())
+    .then(data => {
+      // Do something with the data here, such as display it on the page
+      console.log(data);
+      document.getElementById("berat_y_aksen").innerHTML = JSON.stringify("Berat : " + data.lc_id.y_aksen + " (Y')");
+      document.getElementById("jumlah_z _aksens").innerHTML = JSON.stringify("Jumlah : " + data.lc_id.z_aksen + " (Z')");
+    });
+};
+
+</script>
