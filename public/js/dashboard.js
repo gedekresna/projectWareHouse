@@ -1,14 +1,13 @@
 
 document.getElementById('berat_y_aksen');
 
-function display(e,dataChart){
-    console.log("HAHAHA");
+function display(e,dataChart,valueRak){
     
     e.preventDefault();
     var parsedDatas = JSON.parse(dataChart);
     let labels = parsedDatas.map((dataChart)=>{return dataChart.time});
     let dataChartZ = parsedDatas.map((dataChart)=>{return dataChart.z_aksen});
-    let dataChartY = parsedDatas.map((dataChart)=>{return dataChart.z_aksen});
+    let dataChartY = parsedDatas.map((dataChart)=>{return dataChart.y_aksen});
 
     var ctx = document.getElementById('myChart').getContext('2d');
     var table = document.getElementById('data-table');
@@ -61,19 +60,26 @@ function display(e,dataChart){
         }
     });
 
+     // FILTER TABLE
+    fetch(`/filter-table/${valueRak}`)
+    .then(response => response.json())
+    .then(data => {
     
+        // Clear existing rows from the table
+        $('#myTable tbody').empty();
+
+        // Loop through each object in the response and append a row to the table
+        data.data_filtered.forEach(function(row) {
+            var tr = $('<tr>');
+            tr.append('<td>' + row.id + '</td>');
+            tr.append('<td>' + row.time + '</td>');
+            tr.append('<td>' + row.y_aksen + '</td>');
+            tr.append('<td>' + row.z_aksen + '</td>');
+            $('#myTable tbody').append(tr);
+        });
+        
+    });
+
 }
 
-function loadCardA1(id){
-    console.log("load card js");
-    e.preventDefault();
-    $.ajax({
-        method: "GET",
-        url: `/get-databarang-id/${id}`,
-        data: id
-      })
-        .done(function( msg ) {
-          alert( "Success get data: " + msg );
-        });
-}
 
