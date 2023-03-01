@@ -9,7 +9,7 @@
   <div class="card-container"  style="display: flex; flex-wrap:wrap;">
 
     <div class="card" style="width: 18rem;">
-      <div class="card-body" onclick="display(event,'{{ $dataChart }}','{{ $dataBarang->id }}')" id="cardA1" value="A1">
+      <div class="card-body" onclick="display(event,'{{ $dataChart }}','{{ $dataBarang->rak }}')" id="cardA1" value="A1">
         <div class="row">
           <div class="col-3">
             <h5 class="card-title">A1</h5>
