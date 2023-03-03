@@ -70,6 +70,7 @@ function display(e,dataChart,valueRak){
              tr.append('<td>' + row.time + '</td>');
              tr.append('<td>' + row.y_aksen + '</td>');
              tr.append('<td>' + row.z_aksen + '</td>');
+             tr.append('<td>' + row.rak + '</td>');
              $('#myTable tbody').append(tr);
          });
          

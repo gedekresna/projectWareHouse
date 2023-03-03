@@ -73,7 +73,7 @@
               <th scope="col">Time</th>
               <th scope="col">Berat Seluruh Box</th>
               <th scope="col">Jumlah Box</th>
-              {{-- <th scope="col">Action</th> --}}
+              <th scope="col">Rak</th>
             </tr>
           </thead>
 
