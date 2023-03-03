@@ -57,23 +57,17 @@ class DashboardController extends Controller
     }
 
     public function filterTable($rak){
-        // $data_filtered = LoadCell::query()
-        //                 ->where('data_barang_id',$id)
-        //                 ->select('id','time')
-        //                 ->selectRaw('
-        //                 ROUND((1.0019*(s1+s2+s3+s4)+0.0468), 2) as y_aksen,
-        //                 ROUND((0.02004*(1.0019*(s1+s2+s3+s4)+0.0468)+0.0009), 2) as z_aksen 
-        //                 ')
-        //                 ->get();
-        
-       
-        $data_filtered= DB::table('loadcell')
+
+        $data_filtered = LoadCell::query()
         ->join('data_barang', 'loadcell.data_barang_id', '=', 'data_barang.id')
-        ->select('loadcell.id', 'loadcell.time', 'data_barang.rak', DB::raw('ROUND((1.0019*(s1+s2+s3+s4)+0.0468), 2) as y_aksen'), DB::raw('ROUND((0.02004*(1.0019*(s1+s2+s3+s4)+0.0468)+0.0009), 2) as z_aksen'))
+        ->select('loadcell.id', 'loadcell.time', 'data_barang.rak')
+        ->selectRaw('
+        ROUND((1.0019*(loadcell.s1+loadcell.s2+loadcell.s3+loadcell.s4)+0.0468), 2) as y_aksen,
+        ROUND((0.02004*(1.0019*(loadcell.s1+loadcell.s2+loadcell.s3+loadcell.s4)+0.0468)+0.0009), 2) as z_aksen 
+        ')
         ->where('data_barang.rak', '=', $rak)
         ->get();
 
-        
         return response()->json([
             'data_filtered' => $data_filtered,
         ]);
