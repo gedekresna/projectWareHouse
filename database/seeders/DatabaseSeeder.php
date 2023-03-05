@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
     {
     
 
-        LoadCell::factory(10)->create();
-        // DataBarang::factory(10)->create();
+        LoadCell::factory(10)->create(); //ini di uncomment setelah seed DataBarang dan comment DataBarang
+        //DataBarang::factory(10)->create(); 
 
 
         // \App\Models\User::factory()->create([

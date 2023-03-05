@@ -27,7 +27,8 @@ class DashboardController extends Controller
             ->orderBy('time')
             ->get();
 
-           $dataBarang = DataBarang::latest()->first(); 
+           $dataBarang = DataBarang::where('rak','A1')->first(); 
+
            $dataLoadCell = LoadCell::all();
     
 

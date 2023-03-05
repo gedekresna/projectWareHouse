@@ -15,7 +15,7 @@
             <h5 class="card-title">A1</h5>
           </div>
           <div class="col-9 d-flex flex-row-reverse">
-            @if($dataBarang->rak == "A1")
+            {{-- @if($dataBarang->rak) --}}
               <h6 class="card-title">(Y) {{$dataBarang->berat_per_box}} Kg | (Z) {{$dataBarang->jumlah}}</h6>           
           </div>
         </div>
@@ -24,8 +24,8 @@
       
           <span id="span_a_A1"></span>
           <span id="span_b_A1"></span>
-        @endif
-      </div>
+        {{-- @endif --}}
+      </div> 
     </div>
 
     <div class="card" style="width: 18rem;">
@@ -103,6 +103,7 @@
 <script>
 
 window.onload = function() {
+  console.log("masuk sini");
   let id = {{ $dataBarang->id }};
   let data_y = {{$dataBarang->berat_per_box}};
   let data_z = {{$dataBarang->jumlah}};
